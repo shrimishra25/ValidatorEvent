@@ -108,7 +108,7 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         //String val = str + " " + id + " " + emp_present;
-        String msg = new JSONObject().put("present", str).toString();
+        String msg = new JSONObject().put("present", emp_present).toString();
         return msg;
     }
 }
