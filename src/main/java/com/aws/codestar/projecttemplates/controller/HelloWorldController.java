@@ -92,26 +92,12 @@ public class HelloWorldController {
         
         			while (cellIterator.hasNext()) {
         				Cell cell = cellIterator.next();
-        				switch (cell.getCellType()) {
-        	               case Cell.CELL_TYPE_NUMERIC:
-        	            	   if(id.trim().equals(cell.toString().trim())) {
-	               					emp_present = true;
-	               					break;
-               					}
-        	                  break;
-        	               case Cell.CELL_TYPE_STRING:
-        	            	   if(id.trim().equals(cell.toString().trim())) {
-               					emp_present = true;
-               					break;
-               				}
-        	                  break;
-        	            }
-        				
-        				/*str += cell.toString()+" ";
+        				cell.setCellType(Cell.CELL_TYPE_STRING);
+        				str += cell.toString()+" ";
         				if(id.trim().equals(cell.toString().trim())) {
         					emp_present = true;
         					break;
-        				}*/
+        				}
         			}
         		}   
         		workbook.close();
@@ -122,7 +108,7 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         //String val = str + " " + id + " " + emp_present;
-        String msg = new JSONObject().put("present", emp_present).toString();
+        String msg = new JSONObject().put("present", str).toString();
         return msg;
     }
 }
