@@ -61,30 +61,6 @@ public class HelloWorldController {
         		System.out.println("Sheet : "+ sheet.getFirstRowNum());
         		// we iterate on rows
         		Iterator<Row> rowIt = sheet.iterator();
-            
-        		
-        		/*int masterSheetColumnIndex = sheet.getColumns();
-        	    List<String> ExpectedColumns = new ArrayList<String>();
-        	    for (int x = 0; x < masterSheetColumnIndex; x++) {
-        	        Cell celll = sheet.getCell(x, 0);
-        	        String d = celll.getContents();
-        	        ExpectedColumns.add(d);
-        	    }
-        	    LinkedHashMap<String, List<String>> columnDataValues = new LinkedHashMap<String, List<String>>();
-
-        	    List<String> column1 = new ArrayList<String>();
-        	    // read values from driver sheet for each column
-        	    for (int j = 0; j < masterSheetColumnIndex; j++) {
-        	        column1 = new ArrayList<String>();
-        	        for (int i = 1; i < sheet.getRows(); i++) {
-        	            Cell cell = sheet.getCell(j, i);
-        	            column1.add(cell.getContents());
-        	        }
-        	        columnDataValues.put(ExpectedColumns.get(j), column1);
-        	    }*/
-        		
-        		
-        		
         		while(rowIt.hasNext() && !emp_present) {
         			Row row = rowIt.next();     
         			// iterate on cells for the current row
@@ -92,6 +68,7 @@ public class HelloWorldController {
         
         			while (cellIterator.hasNext()) {
         				Cell cell = cellIterator.next();
+        				//change cell type to string as default it was taking as general
         				cell.setCellType(Cell.CELL_TYPE_STRING);
         				str += cell.toString()+" ";
         				if(id.trim().equals(cell.toString().trim())) {
@@ -108,7 +85,7 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         //String val = str + " " + id + " " + emp_present;
-        String msg = new JSONObject().put("present", emp_present).toString();
+        String msg = new JSONObject().put("employee_present", emp_present).toString();
         return msg;
     }
 }
