@@ -85,7 +85,6 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         //String val = str + " " + id + " " + emp_present;
-        StringBuilder msg = new StringBuilder();
         JSONObject list1 = new JSONObject();
         if(emp_present) {
         	list1.put("emp_exists", emp_present).toString();
