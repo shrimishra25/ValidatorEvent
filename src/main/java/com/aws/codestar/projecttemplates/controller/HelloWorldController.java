@@ -85,7 +85,39 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         //String val = str + " " + id + " " + emp_present;
+        initializeData();
         String msg = new JSONObject().put("employee_present", emp_present).toString();
         return msg;
+    }
+    private void initializeData() {
+    	 //Creating the connection 
+        String url = "jdbc:oracle:thin:@fsextravaganzadb.cvolcgv4ileo.us-east-2.rds.amazonaws.com:3306:xe"; 
+        String user = "shridhar"; 
+        String pass = "Mumbai999";
+        
+        //Inserting data using SQL query 
+        String sqlquery = " insert into users (sap_id, name, du_name, location)"
+                + " values (11119000, shrikant, BARO02, mumbai)";
+        Connection con = null;
+    	try 
+        { 
+            DriverManager.registerDriver(new oracle.jdbc.OracleDriver()); 
+  
+            //Reference to connection interface 
+            con = DriverManager.getConnection(url,user,pass); 
+  
+            Statement st = con.createStatement(); 
+            int m = st.executeUpdate(sqlquery); 
+            if (m == 1) 
+                System.out.println("inserted successfully : "+sqlquery); 
+            else
+                System.out.println("insertion failed"); 
+            con.close(); 
+        } 
+        catch(Exception ex) 
+        { 
+            System.err.println(ex); 
+            System.err.println("Connection Issue"); 
+        } 
     }
 }
