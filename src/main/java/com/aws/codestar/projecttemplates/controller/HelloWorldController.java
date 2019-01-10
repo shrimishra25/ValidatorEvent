@@ -85,18 +85,20 @@ public class HelloWorldController {
             str += "IO Exception caught";
         }
         //String val = str + " " + id + " " + emp_present;
-        String msg = "";
+        StringBuilder msg = new StringBuilder();
+        JSONObject list1 = new JSONObject();
         if(emp_present) {
-        	msg = new JSONObject().put("emp_exists", emp_present).toString();
-        	msg = new JSONObject().put("empdetail", str).toString();
-        	msg = new JSONObject().put("statuscode", "200").toString();
-        	msg = new JSONObject().put("statusmessage", "").toString();
+        	list1.put("emp_exists", emp_present).toString();
+        	list1.put("empdetail", str).toString();
+        	list1.put("statuscode", "200").toString();
+        	list1.put("statusmessage", "").toString();
         } else {
-        	msg = new JSONObject().put("emp_exists", emp_present).toString();
-        	msg = new JSONObject().put("empdetail", str).toString();
-        	msg = new JSONObject().put("statuscode", "201").toString();
-        	msg = new JSONObject().put("statusmessage", "Failed to update").toString();
+        	list1.put("emp_exists", emp_present).toString();
+        	list1.put("empdetail", str).toString();
+        	list1.put("statuscode", "201").toString();
+        	list1.put("statusmessage", "Failed to update").toString();
         }
+        String msg = list1.toString();
        // String msg = new JSONObject().put("employee_present", emp_present).toString();
         return msg;
     }
